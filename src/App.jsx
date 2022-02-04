@@ -1,33 +1,18 @@
 import React, { Component } from 'react'
-import { Route,  BrowserRouter, Redirect } from 'react-router-dom'
+// import { Route,  BrowserRouter, Redirect } from 'react-router-dom'
+import { Button,Input  } from 'antd';
+// import { Form, Input, Button, Checkbox } from 'antd';
 
-import Hello from './pages/Hello'
-import Show from './pages/Show/Show'
-import NavLinks from './component/NavLink'
+// import 'antd/dist/antd.css';
 
+  
 export default class App extends Component {
-    render() {
+    render() {        
         return (
             <div>
-                <BrowserRouter>
-                    {/* <Link to='/hello' >你好</Link> &nbsp;
-                <Link to='/show' >show</Link> */}
-                    <NavLinks to='/hello'>你好</NavLinks> &nbsp;|&nbsp;
-                    <NavLinks to='/show'>show</NavLinks>
-
-                    {/* <NavLink className={({isActive})=>"niude "+(isActive?'acti':'')} to='/'>你好</NavLink> | &nbsp;
-                    <NavLink  className={({isActive})=>"niude "+(isActive?'acti':'')} to='/show'>展示</NavLink> */}
-                    {/* <Switch> */}
-                    {/* v6以下的引用 */}
-                    {/* <Route path='/' component={Hello}></Route> */}
-
-                    <Route path='/hello' component={Hello} />
-                    <Route path='/show' component={Show} />
-                    <Redirect to='/show' />
-                    {/* </Switch> */}
-
-                </BrowserRouter>
-
+                <Button>111</Button>
+                <a>百度</a>
+                <Input placeholder="Basic usage" />
             </div>
         )
     }

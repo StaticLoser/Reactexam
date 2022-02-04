@@ -67,8 +67,46 @@ create-react-app [project_name]  --template typescript
     )
     })
 }
+<Route path='/show/message/:id' component={Detail} />
 ```
 \*Detail中：
 ```
  const { id } = this.props.match.params
+
 ```
+
+### antd 样式按需引入 v4x
+
+#### 1 安装react-app-rewired customize-cra
+```
+npm i react-app-rewired customize-cra
+```
+#### 2修改启动打包配置
+```
+//改成
+"scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test"
+  },
+```
+#### 3安装babel
+```
+npm i babel-plugin-import
+```
+#### 4 在项目根目录创建一个 config-overrides.js 用于修改默认配置。
+```
+const { override, fixBabelImports } = require('customize-cra');
+module.exports = override(
+    fixBabelImports('import', {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: 'css',
+    }),
+);
+```
+#### 5 去掉antd样式引入
+```
+ - import 'antd/dist/antd.css';
+```
+
