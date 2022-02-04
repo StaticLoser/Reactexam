@@ -1,4 +1,4 @@
-### react-router-dom v6
+### react-router-dom v5
 
 ```
     import { Link, Route, Routes,HashRouter as Router  } from 'react-router-dom'
@@ -42,6 +42,33 @@
 ### Routers(v6) & Switch 
 
 ```
-在v6中默认开启严格匹配 模糊匹配概念疑似移除
+Switch等价于Routers
 ```
 
+
+### 创建一个typescript的模板项目
+```
+
+create-react-app [project_name]  --template typescript
+```
+
+
+### 路由组件通信
+#### params传参
+\*Message中:
+```
+
+{
+    messageList.map((item) => {
+    return (
+        <span key={item.ID}>
+        <Link to={`/show/message/${item.ID}`}>{item.TITLE}</Link>&nbsp;
+        </span>
+    )
+    })
+}
+```
+\*Detail中：
+```
+ const { id } = this.props.match.params
+```
