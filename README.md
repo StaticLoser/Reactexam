@@ -55,7 +55,7 @@ create-react-app [project_name]  --template typescript
 
 ### 路由组件通信
 #### params传参
-\*Message中:
+<font color='red'>\*</font>Message中:
 ```
 
 {
@@ -69,7 +69,7 @@ create-react-app [project_name]  --template typescript
 }
 <Route path='/show/message/:id' component={Detail} />
 ```
-\*Detail中：
+<font color='red'>\*</font>Detail中：
 ```
  const { id } = this.props.match.params
 
@@ -106,7 +106,10 @@ module.exports = override(
 );
 ```
 #### 5 去掉antd样式引入
-```
- - import 'antd/dist/antd.css';
-```
+<font color='red'>-</font>  ``` import 'antd/dist/antd.css'; ```
+
+  
+
+
+
 
