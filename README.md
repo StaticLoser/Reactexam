@@ -1,4 +1,4 @@
-### react-router-dom v5
+## react-router-dom v5
 
 ```
     import { Link, Route, Routes,HashRouter as Router  } from 'react-router-dom'
@@ -56,6 +56,7 @@ create-react-app [project_name]  --template typescript
 ### 路由组件通信
 #### params传参
 <font color='red'>\*</font>Message中:
+
 ```
 
 {
@@ -70,6 +71,7 @@ create-react-app [project_name]  --template typescript
 <Route path='/show/message/:id' component={Detail} />
 ```
 <font color='red'>\*</font>Detail中：
+
 ```
  const { id } = this.props.match.params
 
@@ -108,6 +110,52 @@ module.exports = override(
 #### 5 去掉antd样式引入
 <font color='red'>-</font>  ``` import 'antd/dist/antd.css'; ```
 
+
+## Redux
+### 1.下载Redux
+```
+npm install --save redux
+```
+
+### 2.创建redux文件夹 添加store.js & reduxer.js
+<font color='red'>+</font> store.js<br/>
+<font color='red'>+</font> reduxer.js
+
+### 3.store.js
+```
+// 该文件用于暴露一个store对象
+
+import { createStore } from 'redux';
+
+import countRedcuer from './cont_redcuer'
+
+export default createStore(countRedcuer)
+```
+### 4.创建reducer
+```
+/*
+    1.该文件用于创建一个Count组件服务的reducer,
+    2. refucer函数会接到两个参数 (之前的状态(perstste),动作对象(action))
+ */
+
+export default function countRedcuer(perstste = 0, action) {
+    const { type, data } = action
+    switch (type) {
+        case 'increment':
+            return perstste + data
+        case 'decrement':
+            return perstste - data
+        default:
+            return perstste
+    }
+}
+```
+### 5.在index.jsx里
+```
+import Store from '../../redux/store'
+```
+####  5.1获取store默认值
+    Store.getState()
   
 
 
