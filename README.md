@@ -155,9 +155,52 @@ export default function countRedcuer(perstste = 0, action) {
 import Store from '../../redux/store'
 ```
 ####  5.1获取store默认值
-    Store.getState()
-  
+```
+Store.getState()
+```
+#### 5.2异步action
+```
+ npm i redux-thunk --save
+ // store.js 改成
+ import thunk from 'redux-thunk'
+ export default createStore(countRedcuer, applyMiddleware(thunk))
+```
 
+## react-redux
+
+### 安装react-redux
+```
+npm i --save react-redux
+```
+### file
+```
++contains
+    +Count
+        index.jsx (存放容器组件)
+删除一切ui组件里的store 在父组件传递props 把store传递进去        
+```
+#### 容器组件
+```
+// 引入ui组件
+import ConuntUI from '../../component/Count'
+import { connect } from 'react-redux'
+import { CreateIncrease, CreateDecrease, CreateIncreaseAsync }
+    from '../../redux/count_actions'
+// 传递给ui --状态
+function mapStateToProps(state) {
+    return { count: state }
+}
+// 传递给ui--方法
+function mapDispatchToProps(dispatch) {
+    return {
+        Increase: (data) => { dispatch(CreateIncrease(data)) },
+        Decrease: (data) => { dispatch(CreateDecrease(data)) },
+        IncreaseAsync: (data, time) => { dispatch(CreateIncreaseAsync(data, time)) }
+    }
+}
+// 创建并暴露容器组件
+export default connect(mapStateToProps, mapDispatchToProps)(ConuntUI)
+```
 
 
 

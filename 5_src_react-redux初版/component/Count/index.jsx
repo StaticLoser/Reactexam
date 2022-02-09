@@ -8,6 +8,8 @@ export default class Count extends Component {
     state = {
         c: 1
     }
+
+    // handleChange = c => this.setState({ c })
     Increase = () => {
         // 加法   
         const { c } = this.state
@@ -33,12 +35,14 @@ export default class Count extends Component {
         // async加
         const { c } = this.state
         this.props.IncreaseAsync(c * 1, 1000)
+
+        // Store.dispatch(CreateIncreaseAsync(SelectValue * 1, 500))
     }
     render() {
         console.log(this.props);
         return (
             <center style={{ marginTop: '300px' }}>
-                <h1>现在结果是:{this.props.count}</h1>
+                <span>现在结果是:{this.props.count}</span>
                 <br />
                 <br />
                 <Select
