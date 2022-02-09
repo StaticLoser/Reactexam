@@ -158,7 +158,11 @@ import Store from '../../redux/store'
 ```
 Store.getState()
 ```
-#### 5.2异步action
+#### 5.2dispatch
+```
+Store.dispatch(action对象)
+```
+#### 5.3异步action
 ```
  npm i redux-thunk --save
  // store.js 改成
