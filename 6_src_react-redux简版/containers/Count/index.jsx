@@ -1,9 +1,10 @@
 // 引入ui组件
 import { connect } from 'react-redux'
 import { CreateIncrease, CreateDecrease, CreateIncreaseAsync }
-    from '@action/count'
+    from '../../redux/action/count'
 import React, { Component } from 'react';
 import { Button, Select } from 'antd';
+import Store from '../../redux/store'
 
 const { Option } = Select;
 class ConuntUI extends Component {
@@ -41,16 +42,16 @@ class ConuntUI extends Component {
         // Store.dispatch(CreateIncreaseAsync(SelectValue * 1, 500))
     }
     render() {
-        // console.log(this.props);
+        console.log(this.props);
         return (
             <center style={{ marginTop: '300px' }}>
-                <h1>现在结果是:{this.props.count},总人数是：{this.props.totalPerosn}</h1>
+                <span>现在结果是:{Store.getState()}</span>
                 <br />
                 <br />
                 <Select
                     defaultValue="1"
                     style={{ width: 80 }}
-                    onChange={c => this.setState({ c })}>
+                    onChange={c => this.setState(c)}>
                     <Option value="1">1</Option>
                     <Option value="2">2</Option>
                     <Option value="3">3</Option>
@@ -76,8 +77,7 @@ class ConuntUI extends Component {
 // })
 // 创建并暴露容器组件
 export default connect(
-    state => ({ count: state.he, totalPerosn: state.rens.length }),
-    ({
+    state => ({ count: state }), ({
         Increase: CreateIncrease,
         Decrease: CreateDecrease,
         IncreaseAsync: CreateIncreaseAsync

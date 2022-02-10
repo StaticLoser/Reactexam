@@ -205,6 +205,85 @@ function mapDispatchToProps(dispatch) {
 // 创建并暴露容器组件
 export default connect(mapStateToProps, mapDispatchToProps)(ConuntUI)
 ```
+#### 容器组件简化
+```
+//改成
+export default connect(
+    state => ({ count: state.he, totalPerosn: state.rens.length }),
+    ({
+        Increase: CreateIncrease,
+        Decrease: CreateDecrease,
+        IncreaseAsync: CreateIncreaseAsync
+    })
+)(ConuntUI)
+```
+### Provider
+```
+//可以帮你传递store 容器组件无需自己手动传递props
+import store from '@redux/store'
+import { Provider } from 'react-redux'
+reactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+)
+```
+## 对于终端输出无用的日志对webpack进行配置
+```
++config-overrides.js
+// 改成
+const { override, fixBabelImports, addWebpackAlias } = require('customize-cra');
+const path = require('path')
+module.exports = {
+    webpack: override(
+        fixBabelImports('import', {
+            libraryName: 'antd',
+            libraryDirectory: 'es',
+            style: 'css',
+        }),
+        addWebpackAlias({
+            //路径别名
+            '@src': path.resolve(__dirname, 'src'),
+            '@containers': path.resolve(__dirname, './src/containers'),
+            '@action': path.resolve(__dirname, './src/redux/action'),
+            '@redcuer': path.resolve(__dirname, './src/redux/redcuer'),
+            '@redux': path.resolve(__dirname, './src/redux'),
+        }),
+        (config) => {
+            //暴露webpack的配置
+            // 去掉打包生产map 文件
+            config.devtool = config.mode === 'development' ? 'cheap-module-source-map' : false;
+            //在报错的状态下才输出日志
+            config.stats = 'errors-only' || 'errors-warnings'
+            return config
+        }
+    ),
+}
 
+```
+
+###  多个redcuers
+```
+import { combineReducers } from 'redux';
+const allRedcuer = combineReducers({
+    he: countRedcuer,
+    rens: personRedcuer
+})
+
+export default createStore(
+    allRedcuer
+    , applyMiddleware(thunk))
+```
+## 使用redux开发者工具
+```
+1. 浏览器安装 redux
+2. npm i redux-devtools-extension
+3. store.js 
+        import { composeWithDevTools } from 'redux-devtools-extension'
+        export default createStore(
+            allRedcuer
+            , composeWithDevTools(applyMiddleware(thunk)))
+```
 
 

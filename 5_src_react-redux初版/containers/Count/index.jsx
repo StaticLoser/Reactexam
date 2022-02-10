@@ -10,9 +10,9 @@ function mapStateToProps(state) {
 // 传递给ui--方法
 function mapDispatchToProps(dispatch) {
     return {
-        Increase: (data) => { dispatch(CreateIncrease(data)) },
-        Decrease: (data) => { dispatch(CreateDecrease(data)) },
-        IncreaseAsync: (data, time) => { dispatch(CreateIncreaseAsync(data, time)) }
+        Increase: data => dispatch(CreateIncrease(data)),
+        Decrease: data => dispatch(CreateDecrease(data)),
+        IncreaseAsync: (data, time) => dispatch(CreateIncreaseAsync(data, time))
     }
 }
 // 创建并暴露容器组件
